@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * ---------------------------------------------------
+ *  Controlador generado por Programandoweb
+ *  Desarrollado por: Jorge Méndez - Programandoweb
+ *  Correo: lic.jorgemendez@gmail.com
+ *  Celular: 3115000926
+ *  Website: Programandoweb.net
+ *  Proyecto: Ivoovle
+ *  Fecha de creación: {{ date('Y-m-d') }}
+ * ---------------------------------------------------
+ */
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\V1\{{module_namespace}}\{{module_name}}Controller; // Asegúrate de importar el controlador adecuadamente
+
+Route::middleware('auth:api')->prefix('dashboard/store')->group(function () {   
+    // Ruta para crear un nuevo {{module_variable}}
+    Route::post('{{module_variable}}/new', [{{module_name}}Controller::class,"store"]); 
+    
+    // Rutas RESTful para el módulo {{module_variable}}
+    Route::resource('{{module_variable}}', {{module_name}}Controller::class);      
+});

@@ -1,0 +1,94 @@
+<?php
+
+/**
+ * ---------------------------------------------------
+ *  Controlador generado por Programandoweb
+ *  Desarrollado por: Jorge Méndez - Programandoweb
+ *  Correo: lic.jorgemendez@gmail.com
+ *  Celular: 3115000926
+ *  Website: Programandoweb.net
+ *  Proyecto: Ivoovle
+ *  Fecha de creación: {{ date('Y-m-d') }}
+ * ---------------------------------------------------
+ */
+
+namespace App\Repositories;
+
+use App\Contracts\{{module_name}}Interface;
+use App\Models\{{module_name}};
+use Illuminate\Http\Request;
+
+class {{module_name}}Repository implements {{module_name}}Interface
+{
+    private ${{module_name}}Repository;
+
+    public function __construct({{module_name}} ${{module_name}})
+    {
+        $this->{{module_name}}Repository = ${{module_name}};
+    }
+
+    /**
+     * Retorna todos los registros sin paginación, útil para listas simples
+     */
+    public function get()
+    {
+        $query = $this->{{module_name}}Repository->query();
+        $query->selectRaw("id as value, name as label");
+        return $query->get();
+    }
+
+    /**
+     * Retorna todos los registros con paginación y soporte para búsqueda
+     */
+    public function getAll(Request $request)
+    {
+        $perPage = $request->input('per_page', 15);
+        $search = $request->input('search');
+        $query = $this->{{module_name}}Repository->query();
+        
+        // Filtro de búsqueda
+        if (!empty($search)) {
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+
+        // Paginación
+        return $query->paginate($perPage);
+    }
+
+    /**
+     * Encuentra un registro por su ID
+     */
+    public function find($id)
+    {
+        return $this->{{module_name}}Repository->find($id);
+    }
+
+    /**
+     * Crea un nuevo registro
+     */
+    public function create(array $data)
+    {   
+        unset($data["id"]);
+        return $this->{{module_name}}Repository->firstOrCreate($data);
+    }
+
+    /**
+     * Actualiza un registro existente
+     */
+    public function update($id, array $data)
+    {
+        $item = $this->{{module_name}}Repository->findOrFail($id);
+        $item->update($data);
+        return $item;
+    }
+
+    /**
+     * Elimina un registro por su ID
+     */
+    public function delete($id)
+    {
+        $item = $this->{{module_name}}Repository->findOrFail($id);
+        $item->delete();
+        return $item;
+    }
+}

@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * ---------------------------------------------------
+ *  Controlador generado por Programandoweb
+ *  Desarrollado por: Jorge Méndez - Programandoweb
+ *  Correo: lic.jorgemendez@gmail.com
+ *  Celular: 3115000926
+ *  Website: Programandoweb.net
+ *  Proyecto: Ivoovle
+ *  Fecha de creación: {{ date('Y-m-d') }}
+ * ---------------------------------------------------
+ */
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class {{module_name}} extends Model
+{
+    use HasFactory;
+
+    /**
+     * Los atributos que se pueden asignar en masa.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+       
+    ];
+    
+}

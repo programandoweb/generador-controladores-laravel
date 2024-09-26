@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * ---------------------------------------------------
+ *  Controlador generado por Programandoweb
+ *  Desarrollado por: Jorge Méndez - Programandoweb
+ *  Correo: lic.jorgemendez@gmail.com
+ *  Celular: 3115000926
+ *  Website: Programandoweb.net
+ *  Proyecto: Ivoovle
+ *  Fecha de creación: {{ date('Y-m-d') }}
+ * ---------------------------------------------------
+ */
+
+namespace App\Contracts;
+
+interface {{module_name}}Interface
+{
+    public function get();
+
+    public function getAll(\Illuminate\Http\Request $request);
+
+    public function find($id);
+
+    public function create(array $data);
+
+    public function update($id, array $data);
+
+    public function delete($id);
+}

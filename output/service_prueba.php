@@ -1,0 +1,48 @@
+<?php
+
+namespace App\Services;
+
+use App\Models\{{related_model}};
+
+class {{service_name}}
+{
+    /**
+     * Realiza una consulta en la tabla {{related_model}} basada en un grupo clave.
+     *
+     * @param string $key
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getByGroup(string $key)
+    {
+        return {{related_model}}::selectRaw("*, (SELECT label FROM {{related_model}} mt WHERE mt.id={{related_model}}.related_column_id) as related_label")
+                            ->where('grupo', $key)
+                            ->orderBy("label")
+                            ->get();
+    }
+
+    /**
+     * Obtiene las unidades de medida.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getUnitsOfMeasurement()
+    {
+        return {{related_model}}::selectRaw("*, (SELECT label FROM {{related_model}} mt WHERE mt.id={{related_model}}.related_column_id) as related_label")
+                            ->where('grupo', "units_of_measurement")
+                            ->orderBy("label")
+                            ->get();
+    }
+
+    /**
+     * Obtiene los tipos de empaque.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getPackageType()
+    {
+        return {{related_model}}::selectRaw("*, (SELECT label FROM {{related_model}} mt WHERE mt.id={{related_model}}.related_column_id) as related_label")
+                            ->where('grupo', "packaging_type")
+                            ->orderBy("label")
+                            ->get();
+    }
+}

@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * ---------------------------------------------------
+ *  Controlador generado por Programandoweb
+ *  Desarrollado por: Jorge Méndez - Programandoweb
+ *  Correo: lic.jorgemendez@gmail.com
+ *  Celular: 3115000926
+ *  Website: Programandoweb.net
+ *  Proyecto: Ivoovle
+ *  Fecha de creación: {{ date('Y-m-d') }}
+ * ---------------------------------------------------
+ */
+
+namespace App\Http\Controllers\V1\{{module_name}};
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Repositories\{{module_name}}Repository;
+
+class {{module_name}}Controller extends Controller
+{
+    private ${{module_variable}}Repository;
+
+    public function __construct({{module_name}}Repository ${{module_variable}}Repository)
+    {
+        $this->{{module_variable}}Repository = ${{module_variable}}Repository;
+    }
+
+    public function index(Request $request)
+    {
+        try {
+            ${{module_variable}} = $this->{{module_variable}}Repository->getAll($request);
+            return response()->success(compact('{{module_variable}}s'), "Listado de {{module_variable}}s");
+        } catch (\Exception $e) {
+            return response()->error($e->getMessage(), 500);
+        }
+    }
+
+    public function show($id)
+    {
+        try {
+            ${{module_variable}} = $this->{{module_variable}}Repository->find($id);
+            return response()->success(compact('{{module_variable}}'), "{{module_name}} encontrado");
+        } catch (\Exception $e) {
+            return response()->error($e->getMessage(), 500);
+        }
+    }
+
+    public function store(Request $request)
+    {
+        try {
+            $data = $request->all();
+            ${{module_variable}} = $this->{{module_variable}}Repository->create($data);
+            return response()->success(compact('{{module_variable}}'), "{{module_name}} creado");
+        } catch (\Exception $e) {
+            return response()->error($e->getMessage(), 500);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $data = $request->all();
+            ${{module_variable}} = $this->{{module_variable}}Repository->update($id, $data);
+            return response()->success(compact('{{module_variable}}'), "{{module_name}} actualizado");
+        } catch (\Exception $e) {
+            return response()->error($e->getMessage(), 500);
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            ${{module_variable}} = $this->{{module_variable}}Repository->delete($id);
+            return response()->success(compact('{{module_variable}}'), "{{module_name}} eliminado");
+        } catch (\Exception $e) {
+            return response()->error($e->getMessage(), 500);
+        }
+    }
+}
